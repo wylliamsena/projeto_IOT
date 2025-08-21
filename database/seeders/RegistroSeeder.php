@@ -16,42 +16,51 @@ class RegistroSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create('pt_BR');
+        $faker = Faker::create('pt_BR'); 
         $sensores = Sensor::all();
 
         $unidadesPorTipo = [
-            'temperatura' => '°C',
-            'umidade' => '%',
-            'luminosidade' => 'Lux',
+            'temperatura' => 'ºC', 
+            'umidade' => '%', 
+            'luminosidade' => 'Lux', 
             'presenca' => 'ON'
-        ];
+        ]; 
 
-        $dataAtual = Carbon::now('America/Sao_paulo')->subMonth();
-        $dataFinal = Carbon::now('America/So_paulo');
+        $dataAtual = Carbon::now('America/Sao_Paulo')->subMonth(); 
+        $dataFinal = Carbon::now('America/Sao_Paulo');
 
-        while ($dataAtual->lessThanOrEqualTo($dataFinal)) {
-            foreach ($sensores as $sensor) {
-                $tipo = $sensor->tipo;
+        while($dataAtual->lessThanOrEqualTo($dataFinal)){
+            foreach($sensores as $sensor){
+                $tipo = $sensor->tipo; 
 
-                $unidade = $unidadesPorTipo[$tipo] ?? '';
+                $unidade = $unidadesPorTipo[$tipo] ?? ''; 
 
-                switch ($tipo) {
+                switch($tipo){
                     case 'temperatura':
                         $valor = $faker->randomFloat(2, 15, 35);
+                        break; 
+                    case 'umidade': 
+                         $valor = $faker->randomFloat(2, 20, 90); 
                         break;
-                    case 'umidade':
-                        $valor = $faker->randomFloat(2, 20, 90);
+                    case 'luminosidade': 
+                        $valor = $faker->numberBetween(0, 1000);
+                        break;
+                    case 'presenca': 
+                        $valor = $faker->randomElement(['ON', 'OFF']); 
+                        break; 
+                    default: 
+                        $valor = $faker->randomFloat(2, 0, 100); 
                         break;
                 }
-            }
-        }
 
-        for ($i = 1; $i <= 10; $i++) {
-            Registro::create([
-                'valor' => 'Registro' . $i,
-                'unidade' => $faker->sentence(),
-                'data_hora' => $faker->boolean(80),
-            ]);
+                Registro::create([
+                    'sensor_id' => $sensor->id, 
+                    'valor' => $valor, 
+                    'unidade' => $unidade, 
+                    'data_hora' => $dataAtual->format('Y-m-d H:i:s')
+                ]);
+            }
+            $dataAtual->addMinutes(10);
         }
     }
 }
