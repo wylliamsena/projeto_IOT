@@ -13,6 +13,7 @@ class SensoresEdit extends Component
     public $tipo;
     public $descricao;
     public $status;
+    public $nome;
  
     public function mount($id)
     {
@@ -22,7 +23,7 @@ class SensoresEdit extends Component
             session()->flash('error', 'Sensor não encontrado');
             return redirect()->route('Sensor.index');
         }
-        $this->ambienteId = $sensor->id;
+        $this->ambiente_id = $sensor->id;
             $this->nome = $sensor->nome;
             $this->descricao = $sensor->descricao;
             $this->status = $sensor->status;

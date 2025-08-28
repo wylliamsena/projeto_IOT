@@ -3,7 +3,7 @@
         <div class="row align-items-center mb-4">
             <div class="col-md-6">
                 <h2 class="mb-0 text-dark">
-                    <i class="bi bi-people-fill me-1"></i> Sensor
+                    <i class="bi bi-people-fill me-1"></i> Lista dos sensores
                 </h2>
             </div>
             <div class="col-md-6 text-end">
@@ -54,9 +54,16 @@
                                     <td>{{ $sensor->descricao }}</td>
                                     <td>{{ $sensor->status }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('sensor.create', $sensor->id) }}" class="btn btn-sm btn-outline-warning me-1" title="Editar">
+                                        <a href="{{ route('sensor.edit', $sensor->id) }}" class="btn btn-sm btn-outline-warning me-1" title="Editar">
                                             <i class="bi bi-pencil"></i>
                                         </a>
+                                    </td>
+                                    <td>
+                                        <button wire:click="delete({{$sensor->id}})"
+                                    class="btn btn-sm btn-danger" onclick="return confirm('Tem Certeza')">
+                                    <i class="bi bi-person-x-fill"></i>
+                                </button>
+
                                     </td>
                                 </tr>
                             @empty
@@ -104,7 +111,6 @@
                 </div>
 
                 <div class="d-flex justify-content-end mt-3">
-                    {{ $sensores->links() }}
                 </div>
             </div>
         </div>

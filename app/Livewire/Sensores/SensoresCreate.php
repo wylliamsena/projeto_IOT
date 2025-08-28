@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Sensores;
 
+use App\Models\Ambiente;
 use App\Models\Sensor;
 use Livewire\Component;
 
@@ -17,7 +18,7 @@ public $ambiente_id;
     {
 
         Sensor::Create([
-            'ambienteId' => $this -> ambiente -> id,
+            'ambiente_id' => $this -> ambiente_id,
             'codigo' => $this -> codigo,
             'tipo' => $this -> tipo,
             'descricao' => $this -> descricao,
@@ -26,12 +27,13 @@ public $ambiente_id;
 
         session()->flash('message', 'Sensor Cadastrado');
         $this->reset(['ambiente_id', 'codigo', 'tipo', 'descricao', 'status']);
-        return redirect()->route('sensores.list');
+        return redirect()->route('sensor.list');
 
     }
 
     public function render()
     {
-        return view('livewire.sensores.sensores-create');
+        $ambientes = Ambiente::all();
+        return view('livewire.sensores.sensores-create', compact('ambientes'));
     }
 }
