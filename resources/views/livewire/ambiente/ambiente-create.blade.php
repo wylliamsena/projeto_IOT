@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <div class="card mx-auto" style="max-width: 500px;">
         <div class="card-body">
-            <h4 class="card-title text-center mb-4">Ambiente cadastrado</h4>
+            <h4 class="card-title text-center mb-4">Cadastrar ambiente</h4>
 
             @if (session()->has('success'))
                 <div class="alert alert-success">
@@ -29,7 +29,7 @@
                 <div>
                     <label class="form-label"><i class=""></i>Status</label>
                     <select class="form-select" aria-label="Status" wire:model='status'>
-                        <option hidden></option>
+                        <option hidden>Ativo & Inativo</option>
                         <option value="1">Ativo</option>
                         <option value="0">Inativo</option>
                     </select>
