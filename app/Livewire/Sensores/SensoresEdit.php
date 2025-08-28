@@ -41,6 +41,7 @@ class SensoresEdit extends Component
             'nome' => $this->nome,
             'descricao' => $this->descricao,
             'status' => $this->status,
+            'ambiente_id' => $this->ambiente_id,
         ]);
  
  

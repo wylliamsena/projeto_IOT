@@ -25,15 +25,14 @@ public $ambiente_id;
             'status' => $this -> status,
         ]);
 
-        session()->flash('message', 'Sensor Cadastrado');
-        $this->reset(['ambiente_id', 'codigo', 'tipo', 'descricao', 'status']);
+        session()->flash('message', 'Sensor Cadastrado');$this->reset(['ambiente_id', 'codigo', 'tipo', 'descricao', 'status']);
         return redirect()->route('sensor.list');
 
     }
 
     public function render()
     {
-        $ambientes = Ambiente::all();
-        return view('livewire.sensores.sensores-create', compact('ambientes'));
+        $ambiente = Ambiente::all();
+        return view('livewire.sensores.sensores-create', compact('ambiente'));
     }
 }
