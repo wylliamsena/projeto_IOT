@@ -6,4 +6,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Dashboard::class);
 
-Route::get('/index', RegistroIndex::class)->name('registros.index');
+Route::get('/registro/index', RegistroIndex::class)->name('registros.index');

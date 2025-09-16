@@ -9,7 +9,7 @@ use Livewire\Component;
 class RegistroIndex extends Component
 {
     public $search = '';
-    public $perPage = 20;
+    public $perPage = 10;
 
     protected $queryString =[
         'search' => ['except' =>''],
@@ -22,7 +22,8 @@ class RegistroIndex extends Component
         ->orwhere('unidade', 'like', "%{$this->search}%")
          ->orwhere('data_hora', 'like', "%{$this->search}%")
           ->orwhere('id', 'sensor_id', 'valor', 'unidade', 'data_hora')
-          ->paginate($this->perPgae);
+          ->orderByDesc('data_hora', 'like', 'valor', 'unidade', 'data_hora')
+          ->paginate($this->perPage);
 
         return view('livewire.registro-index', compact('registros'));
     }
@@ -30,7 +31,6 @@ class RegistroIndex extends Component
     public function delete($id)
     {
         $registro = Registro::find($id);
-        $user = User::find($registro->user_id);
         $registro->delete();
 
         session()->flash('message', 'Registro deletado com sucesso');
