@@ -11,7 +11,10 @@ Route::get('/ambiente/edit/{id}', AmbienteEdit::class)->name('ambiente.edit');
 Route::get('/ambiente/list', AmbienteList::class)->name('ambiente.list');
 
 use App\Livewire\Dashboard;
+use App\Livewire\RegistroIndex;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', Dashboard::class);
+
+Route::get('/registro/index', RegistroIndex::class)->name('registros.index');
 
