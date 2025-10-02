@@ -12,7 +12,7 @@ Route::get('/ambiente/list', AmbienteList::class)->name('ambiente.list');
 
 use App\Livewire\Dashboard;
 use App\Livewire\RegistroIndex;
-use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', Dashboard::class);
 
