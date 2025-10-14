@@ -1,29 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>{{ $title ?? 'Page Title' }}</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-         rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
-          crossorigin="anonymous">
-    
-    </head>
-    <body>
-        {{ $slot }}
-        
-    </body>
-
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <title>{{ $title ?? 'Page Title' }}</title>
 </head>
@@ -44,9 +28,9 @@
 
             <nav class="nav flex-column px-2">
                 <a href="#" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                <a href="#" class="nav-link"><i class="bi bi-building"></i>Ambientes</a>
-                <a href="#" class="nav-link"><i class="bi bi-people"></i>Usuários</a>
-                <a href="#" class="nav-link"><i class="bi bi-exclamation-triangle">Alertas</i></a>
+                <a href="#" class="nav-link"><i class="bi bi-building"></i> Ambientes</a>
+                <a href="#" class="nav-link"><i class="bi bi-people"></i> Usuários</a>
+                <a href="#" class="nav-link"><i class="bi bi-exclamation-triangle"></i> Alertas</a>
                 <a href="#" class="nav-link"><i class="bi bi-gear"></i>Configurações</a>
             </nav>
 
@@ -69,16 +53,17 @@
                 </div>
                 <small class="text-muted">Escola SESI/SENAI de Presidente Epitácio</small>
             </header>
+
             <main class="main-content">
                 {{ $slot }}
             </main>
         </div>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous">
     </script>
+
 </body>
 
 
