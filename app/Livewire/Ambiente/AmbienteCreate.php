@@ -18,6 +18,7 @@ class AmbienteCreate extends Component
     ]);
 
     session()->flash('message', 'Ambiente criado com sucesso!');
+     return redirect()->route('ambiente.list');
     
    }
 

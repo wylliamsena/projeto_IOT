@@ -78,9 +78,7 @@
                 </table>
             </div>
  
-            <div class="mt-3">
-                {{ $ambientes->links() }}
-            </div>
+           
         </div>
     </div>
 </div>

@@ -42,7 +42,7 @@ class AmbienteEdit extends Component
  
  
         session()->flash('message', 'Ambiente atualizado com sucesso.');
-        return redirect()->route('ambiente.create');
+        return redirect()->route('ambiente.list');
     }
     public function render()
     {
