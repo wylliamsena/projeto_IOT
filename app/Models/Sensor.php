@@ -22,7 +22,7 @@ class Sensor extends Model
     }
 
       public function ambiente(){
-        return $this->belongsTo(Registro::class);
+        return $this->belongsTo(Ambiente::class);
     }
     use HasFactory;
 }
