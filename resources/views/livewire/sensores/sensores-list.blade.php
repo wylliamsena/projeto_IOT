@@ -1,8 +1,10 @@
 <div class="container mt-5">
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2><i class="bi bi-thermometer-half me-2"></i> Sensores</h2>
-        <a href="{{ route('sensor.create') }}" class="btn btn-primary">
+        <h2 class="d-flex align-items-center">
+            <i class="bi bi-thermometer-half me-2"></i> Sensores
+        </h2>
+        <a href="{{ route('sensor.create') }}" class="btn btn-primary d-flex align-items-center">
             <i class="bi bi-plus-circle me-1"></i> Novo Sensor
         </a>
     </div>
@@ -21,19 +23,34 @@
         <table class="table table-striped align-middle">
             <thead class="table-light">
                 <tr>
-                    <th><i class="bi bi-hash me-1"></i> ID</th>
-                    <th><i class="bi bi-building me-1"></i> Ambiente</th>
+                    <th class="text-center">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <i class="bi bi-hash me-1"></i>
+                            <span>ID</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-building me-1"></i>
+                            <span>Ambiente</span>
+                        </div>
+                    </th>
                     <th><i class="bi bi-gear me-1"></i> Tipo</th>
                     <th><i class="bi bi-card-text me-1"></i> Descrição</th>
-                    <th><i class="bi bi-code-slash me-1"></i> Código</th>
+                    <th>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-code-slash me-1"></i>
+                            <span>Código</span>
+                        </div>
+                    </th>
                     <th><i class="bi bi-toggle-on me-1"></i> Status</th>
-                    <th><i class="bi bi-gear-fill me-1"></i> Ações</th>
+                    <th class="text-center"><i class="bi bi-gear-fill me-1"></i> Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($sensores as $sensor)
                     <tr>
-                        <td>{{ $sensor->id }}</td>
+                        <td class="text-center">{{ $sensor->id }}</td>
                         <td>{{ $sensor->ambiente->nome }}</td>
                         <td>{{ $sensor->tipo }}</td>
                         <td>{{ $sensor->descricao }}</td>
@@ -43,8 +60,9 @@
                                 <input class="form-check-input" type="checkbox" role="switch"
                                     id="sensorSwitch{{ $sensor->id }}" wire:click="toggleStatus({{ $sensor->id }})"
                                     {{ $sensor->status == 1 ? 'checked' : '' }}>
-                                <label class="form-check-label ms-2" for="sensorSwitch{{ $sensor->id }}">
-                                    @if($sensor->status == 1)
+                                <label class="form-check-label ms-2 d-flex align-items-center"
+                                    for="sensorSwitch{{ $sensor->id }}">
+                                    @if ($sensor->status == 1)
                                         <i class="bi bi-check-circle-fill text-success me-1"></i> Ativo
                                     @else
                                         <i class="bi bi-x-circle-fill text-danger me-1"></i> Inativo
@@ -52,53 +70,63 @@
                                 </label>
                             </div>
                         </td>
-                        <td>
-                            <a href="{{ route('sensor.edit', $sensor->id) }}" class="btn btn-sm btn-warning me-1" title="Editar">
-                                <i class="bi bi-pencil-square me-1"></i> Editar
-                            </a>
-                            <button wire:click="delete({{ $sensor->id }})" class="btn btn-sm btn-outline-danger"
-                                title="Excluir" wire:confirm="Tem certeza?">
-                                <i class="bi bi-trash-fill me-1"></i> Excluir
-                            </button>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center gap-1">
+                                <!-- Botão Editar -->
+                                <a href="{{ route('sensor.edit', $sensor->id) }}"
+                                    class="btn btn-sm btn-warning d-flex align-items-center" title="Editar">
+                                    <i class="bi bi-pencil-square me-1"></i> Editar
+                                </a>
+                                <!-- Botão Excluir -->
+                                <button wire:click="delete({{ $sensor->id }})"
+                                    class="btn btn-sm btn-outline-danger d-flex align-items-center" title="Excluir"
+                                    wire:confirm="Tem certeza?">
+                                    <i class="bi bi-trash-fill me-1"></i> Excluir
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center text-muted py-4">
+                        <td colspan="7"
+                            class="text-center text-muted py-4 d-flex align-items-center justify-content-center">
                             <i class="bi bi-exclamation-circle me-1"></i> Nenhum sensor encontrado.
                         </td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
+
+        <!-- Paginação -->
         <div class="d-flex flex-column align-items-center justify-content-center mt-3">
-    <div class="mb-2 text-center">
-        Mostrando {{ $sensores->firstItem() }} até {{ $sensores->lastItem() }} de
-        {{ $sensores->total() }} resultados
-    </div>
+            <div class="mb-2 text-center">
+                Mostrando {{ $sensores->firstItem() }} até {{ $sensores->lastItem() }} de
+                {{ $sensores->total() }} resultados
+            </div>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item {{ $sensores->onFirstPage() ? 'disabled' : '' }}">
-                <a href="#" class="page-link" wire:click.prevent="previousPage" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item {{ $sensores->onFirstPage() ? 'disabled' : '' }}">
+                        <a href="#" class="page-link" wire:click.prevent="previousPage" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
 
-            @foreach ($sensores->getUrlRange(1, $sensores->lastPage()) as $page => $url)
-                <li class="page-item {{ $sensores->currentPage() == $page ? 'active' : '' }}">
-                    <a href="#" class="page-link" wire:click.prevent="gotoPage({{ $page }})">{{ $page }}</a>
-                </li>
-            @endforeach
+                    @foreach ($sensores->getUrlRange(1, $sensores->lastPage()) as $page => $url)
+                        <li class="page-item {{ $sensores->currentPage() == $page ? 'active' : '' }}">
+                            <a href="#" class="page-link"
+                                wire:click.prevent="gotoPage({{ $page }})">{{ $page }}</a>
+                        </li>
+                    @endforeach
 
-            <li class="page-item {{ $sensores->hasMorePages() ? '' : 'disabled' }}">
-                <a href="#" class="page-link" wire:click.prevent="nextPage" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
+                    <li class="page-item {{ $sensores->hasMorePages() ? '' : 'disabled' }}">
+                        <a href="#" class="page-link" wire:click.prevent="nextPage" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
     </div>
 </div>

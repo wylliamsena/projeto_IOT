@@ -1,11 +1,11 @@
 <div class="container mt-5">
     <div class="bg-transparent border-0 d-flex justify-content-between align-items-center mb-4 pt-3">
-        <h1 class="h3 text-primary"><i class="bi bi-person-circle"></i> Editar Sesnor</h1>
-        <a href="{{ route('sensor.list') }}" class="btn  btn-outline-secondary">
+        <h1 class="h3 text-primary"><i class="bi bi-person-circle"></i> Editar Sensor</h1>
+        <a href="{{ route('sensor.list') }}" class="btn btn-outline-secondary">
             <i class="bi bi-arrow-left"></i> Voltar
         </a>
     </div>
-    
+
     <div class="card">
         <div class="card-body">
             @if(session()->has('message'))
@@ -17,31 +17,41 @@
             <form wire:submit.prevent="update">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="nome" class="form-label">Nome</label>
+                        <label for="nome" class="form-label">
+                            <i class="bi bi-person"></i> <strong>Nome</strong>
+                        </label>
                         <input type="text" wire:model="nome" id="nome" class="form-control">
                         @error('nome') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="cpf" class="form-label">CPF</label>
+                        <label for="cpf" class="form-label">
+                            <i class="bi bi-card-text"></i> <strong>CPF</strong>
+                        </label>
                         <input type="text" wire:model="cpf" id="cpf" class="form-control">
                         @error('cpf') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="email" class="form-label">Email</label>
+                        <label for="email" class="form-label">
+                            <i class="bi bi-envelope"></i> <strong>Email</strong>
+                        </label>
                         <input type="email" wire:model="email" id="email" class="form-control">
                         @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="telefone" class="form-label">Telefone</label>
+                        <label for="telefone" class="form-label">
+                            <i class="bi bi-telephone"></i> <strong>Telefone</strong>
+                        </label>
                         <input type="text" wire:model="telefone" id="telefone" class="form-control">
                         @error('telefone') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="col-12 mb-3">
-                        <label for="endereco" class="form-label">Endereço</label>
+                        <label for="endereco" class="form-label">
+                            <i class="bi bi-house-door"></i> <strong>Endereço</strong>
+                        </label>
                         <input type="text" wire:model="endereco" id="endereco" class="form-control">
                         @error('endereco') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
@@ -49,7 +59,7 @@
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-save"></i> Salvar Alterações
+                        <i class="bi bi-save"></i> <strong>Salvar Alterações</strong>
                     </button>
                 </div>
             </form>
