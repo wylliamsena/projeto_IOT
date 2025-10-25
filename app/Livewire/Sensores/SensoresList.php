@@ -19,19 +19,35 @@ class SensoresList extends Component
         'perPage' => ['except' => 15],
     ];
 
- 
+    /**
+     * Alterna o status (0 ou 1) do Sensor no banco de dados.
+     * @param int $sensorId O ID do sensor a ser atualizado.
+     */
+    public function toggleStatus(int $sensorId)
+    {
+
+        $sensor = Sensor::findOrFail($sensorId);
+
+        $sensor->status = $sensor->status ? 0 : 1;
+
+        $sensor->save();
+
+        session()->flash('message', 'Status do Sensor ' . $sensor->id . ' atualizado para: ' . ($sensor->status ? 'Ativo' : 'Inativo'));
+    }
 
     public function render()
     {
-         $sensores = Sensor::where('codigo', 'like', "%{$this->search}%")
+        $sensores = Sensor::where('codigo', 'like', "%{$this->search}%")
             ->orWhere('tipo', 'like', "%{$this->search}%")
             ->orWhere('descricao', 'like', "%{$this->search}%")
             ->orWhere('status', 'like', "%{$this->search}%")
             ->paginate($this->perPage);
         return view('livewire.sensores.sensores-list', compact('sensores'));
     }
-      public function delete($id){
-        sensor::findOrFail($id)->delete();
+
+    public function delete($id){
+        Sensor::findOrFail($id)->delete();
         session()->flash('message', 'Sensor deletado com sucesso');
     }
+
 }

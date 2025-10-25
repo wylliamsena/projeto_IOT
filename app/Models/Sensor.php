@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -21,7 +22,7 @@ class Sensor extends Model
     }
 
       public function ambiente(){
-        return $this->belongsTo(Registro::class);
+        return $this->belongsTo(Ambiente::class);
     }
     use HasFactory;
 }
