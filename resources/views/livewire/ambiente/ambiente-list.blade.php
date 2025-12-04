@@ -5,14 +5,12 @@
                 <i class="bi bi-houses me-2"></i> Ambientes
             </h3>
 
-            <!-- Botão Novo Ambiente -->
             <div class="d-flex justify-content-end mb-3">
                 <a href="{{ route('ambiente.create') }}" class="btn btn-primary">
                     <i class="bi bi-plus-circle me-1"></i> Novo Ambiente
                 </a>
             </div>
 
-            <!-- Mensagens de feedback -->
             @if (session()->has('message'))
                 <div class="alert alert-success">
                     {{ session('message') }}
@@ -35,7 +33,6 @@
                 </div>
             @endif
 
-            <!-- Barra de pesquisa e paginação -->
             <div class="row mb-4">
                 <div class="col-md-6">
                     <input type="text" wire:model.live="search" class="form-control"
@@ -51,7 +48,6 @@
                 </div>
             </div>
 
-            <!-- Tabela -->
             <div class="table-responsive">
                 <table class="table align-middle">
                     <thead class="table-light">
@@ -90,7 +86,6 @@
                 </table>
             </div>
 
-            <!-- Paginação -->
             <div class="d-flex justify-content-center mt-3">
                 {{ $ambientes->links() }}
             </div>

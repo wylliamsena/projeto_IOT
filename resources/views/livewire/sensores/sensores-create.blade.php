@@ -6,7 +6,7 @@
             </h4>
 
             <form wire:submit.prevent="store">
-                <!-- Ambiente -->
+
                 <div class="mb-3">
                     <label for="ambiente_id" class="form-label fw-semibold text-dark">
                         <i class="bi bi-building me-2 text-primary"></i> Ambiente
@@ -20,7 +20,6 @@
                     @error('ambiente_id') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <!-- Código -->
                 <div class="mb-3">
                     <label class="form-label fw-semibold text-dark">
                         <i class="bi bi-upc me-2 text-primary"></i> Código
@@ -29,7 +28,6 @@
                     @error('codigo') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <!-- Tipo -->
                 <div class="mb-3">
                     <label class="form-label fw-semibold text-dark">
                         <i class="bi bi-cpu me-2 text-primary"></i> Tipo
@@ -38,7 +36,6 @@
                     @error('tipo') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <!-- Status -->
                 <div class="mb-4">
                     <label for="status" class="form-label fw-semibold text-dark">
                         <i class="bi bi-toggle-on me-2 text-primary"></i> Status
@@ -51,7 +48,6 @@
                     @error('status') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <!-- Botões -->
                 <div class="d-flex justify-content-center gap-3 mt-4">
                     <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm" style="border-radius: 50px;">
                         <i class="bi bi-check-circle me-2"></i> Cadastrar

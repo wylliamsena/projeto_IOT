@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Sensores;
 
+use App\Models\Ambiente;
 use App\Models\Sensor;
 use Livewire\Component;
 
@@ -50,6 +51,7 @@ class SensoresEdit extends Component
     }
     public function render()
     {
-        return view('livewire.sensores.sensores-edit');
+        $ambientes=Ambiente::all();
+        return view('livewire.sensores.sensores-edit', compact('ambientes'));
     }
 }

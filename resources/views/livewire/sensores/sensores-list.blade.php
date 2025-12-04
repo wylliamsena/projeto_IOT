@@ -1,5 +1,8 @@
 <div class="container mt-5">
-    <!-- Header -->
+     <div class="col-md-6">
+                    <input type="text" wire:model.live="search" class="form-control"
+                        placeholder="🔍 Buscar sensores...">
+                </div>
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="d-flex align-items-center">
             <i class="bi bi-thermometer-half me-2"></i> Sensores
@@ -9,7 +12,6 @@
         </a>
     </div>
 
-    <!-- Mensagem de sucesso -->
     @if (session()->has('message'))
         <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
             <i class="bi bi-check-circle-fill me-2"></i>
@@ -18,7 +20,6 @@
         </div>
     @endif
 
-    <!-- Tabela de sensores -->
     <div class="table-responsive shadow-sm rounded">
         <table class="table table-striped align-middle">
             <thead class="table-light">
@@ -72,12 +73,12 @@
                         </td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center gap-1">
-                                <!-- Botão Editar -->
+                   
                                 <a href="{{ route('sensor.edit', $sensor->id) }}"
                                     class="btn btn-sm btn-warning d-flex align-items-center" title="Editar">
                                     <i class="bi bi-pencil-square me-1"></i> Editar
                                 </a>
-                                <!-- Botão Excluir -->
+                           
                                 <button wire:click="delete({{ $sensor->id }})"
                                     class="btn btn-sm btn-outline-danger d-flex align-items-center" title="Excluir"
                                     wire:confirm="Tem certeza?">
@@ -97,7 +98,6 @@
             </tbody>
         </table>
 
-        <!-- Paginação -->
         <div class="d-flex flex-column align-items-center justify-content-center mt-3">
             <div class="mb-2 text-center">
                 Mostrando {{ $sensores->firstItem() }} até {{ $sensores->lastItem() }} de

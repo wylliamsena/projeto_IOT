@@ -64,9 +64,9 @@
                         @forelse($registros as $registro)
                             <tr>
                                 <td>{{ $registro->id }}</td>
-                                <td>{{ $registro->Sensor_id }}</td>
-                                <td>{{ $registro->Valor }}</td>
-                                <td>{{ $registro->Unidade }}</td>
+                                <td>{{ $registro->sensor_id }}</td>
+                                <td>{{ $registro->valor }}</td>
+                                <td>{{ $registro->unidade }}</td>
                                 <td>{{ $registro->data_hora }}</td>
                                
                                 <td>

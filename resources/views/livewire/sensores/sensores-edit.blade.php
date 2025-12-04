@@ -1,65 +1,72 @@
-<div class="container mt-5">
-    <div class="bg-transparent border-0 d-flex justify-content-between align-items-center mb-4 pt-3">
-        <h1 class="h3 text-primary"><i class="bi bi-person-circle"></i> Editar Sensor</h1>
-        <a href="{{ route('sensor.list') }}" class="btn btn-outline-secondary">
-            <i class="bi bi-arrow-left"></i> Voltar
-        </a>
-    </div>
-
-    <div class="card">
+<div class="d-flex justify-content-center align-items-center mt-5" style="background-color: #f7f7f7;">
+    <div class="card shadow-lg bg-light text-light border-0" style="width: 100%; max-width: 600px;">
         <div class="card-body">
-            @if(session()->has('message'))
+            <h4 class="card-title mb-4 text-center text-primary">
+                <i class="bi bi-person-plus-fill"></i> Editar Sensor. . .
+            </h4>
+
+           
+            @if (session()->has('message'))
                 <div class="alert alert-success">
                     {{ session('message') }}
                 </div>
             @endif
 
+           
             <form wire:submit.prevent="update">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="nome" class="form-label">
-                            <i class="bi bi-person"></i> <strong>Nome</strong>
-                        </label>
-                        <input type="text" wire:model="nome" id="nome" class="form-control">
-                        @error('nome') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label for="cpf" class="form-label">
-                            <i class="bi bi-card-text"></i> <strong>CPF</strong>
-                        </label>
-                        <input type="text" wire:model="cpf" id="cpf" class="form-control">
-                        @error('cpf') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
+            <div class="mb-3" >
+            <option selected class="form-label fw-semibold text-dark">Ambiente</option>
+            <select class="form-select" aria-label="Default select example" wire:model.defer='ambiente_id' id="ambiente_id">
+            @foreach ($ambientes as $a)
+            <option value="{{$a->id}}">{{$a->nome}}</option>
+            @endforeach
+            </select>
+            @error('ambiente_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label for="email" class="form-label">
-                            <i class="bi bi-envelope"></i> <strong>Email</strong>
-                        </label>
-                        <input type="email" wire:model="email" id="email" class="form-control">
-                        @error('email') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <label for="telefone" class="form-label">
-                            <i class="bi bi-telephone"></i> <strong>Telefone</strong>
-                        </label>
-                        <input type="text" wire:model="telefone" id="telefone" class="form-control">
-                        @error('telefone') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="col-12 mb-3">
-                        <label for="endereco" class="form-label">
-                            <i class="bi bi-house-door"></i> <strong>Endereço</strong>
-                        </label>
-                        <input type="text" wire:model="endereco" id="endereco" class="form-control">
-                        @error('endereco') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
+                <div class="mb-3" >
+                    <label class="form-label text-dark"><i class="bi bi-code-slash" ></i> Código</label>
+                    <input type="text" wire:model="codigo" class="form-control">
+                    @error('codigo') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-save"></i> <strong>Salvar Alterações</strong>
+                <div class="mb-3">
+                    <label class="form-label text-dark" ><i class="bi bi-text-left"></i> Descrição</label>
+                    <input type="text" wire:model="descricao" class="form-control">
+                    @error('descricao') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-dark"><i class="bi bi-clipboard"></i> Tipo</label>
+                    <input type="text" wire:model="tipo" class="form-control">
+                    @error('tipo') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+
+                <div class="mb-3">
+                     <label class="form-label text-dark"><i></i> Status</label>
+
+            <select class="form-select" aria-label="default-select example"@error('status') is-invalid @enderror
+                id="status" wire:model.defer="status" placeholder="">
+                <option hidden></option>
+                <option value="1">True</option>
+                <option value="0">False</option>
+            </select>
+            @error('cargo')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+            <br>
+
+
+                <div class="d-flex justify-content-between">
+                    <a href="{{ route('sensor.list') }}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Voltar
+                    </a>
+
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-circle"></i> Atualizar
                     </button>
                 </div>
             </form>
